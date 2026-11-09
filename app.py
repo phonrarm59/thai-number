@@ -4,11 +4,13 @@ import re
 import uuid
 import requests
 import gspread
+import json
 
 from datetime import datetime
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 from google.oauth2.service_account import Credentials
+
 
 load_dotenv()
 
@@ -28,12 +30,26 @@ SCOPES = [
 
 
 # เชื่อมต่อ Google Sheets
+
 def connect_sheets():
 
-    credentials = Credentials.from_service_account_file(
-        "credentials.json",
-        scopes=SCOPES
-    )
+    credentials_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+
+    if credentials_json:
+        # ใช้ Credentials จาก Vercel
+        credentials_info = json.loads(credentials_json)
+
+        credentials = Credentials.from_service_account_info(
+            credentials_info,
+            scopes=SCOPES
+        )
+
+    else:
+        # ใช้ไฟล์ credentials.json บนเครื่องคอมพิวเตอร์
+        credentials = Credentials.from_service_account_file(
+            "credentials.json",
+            scopes=SCOPES
+        )
 
     client = gspread.authorize(credentials)
 
