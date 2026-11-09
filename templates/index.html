@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI License Plate Recognition</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Popup เพิ่มทะเบียนรถ -->
+    <div id="addVehicleModal" class="modal hidden">
+      <div class="modal-content">
+        <button type="button" id="closeModalBtn" class="close-btn">
+          &times;
+        </button>
+
+        <h2>ลงทะเบียนรถใหม่</h2>
+        <p>กรุณากรอกข้อมูลรถให้ครบถ้วน</p>
+
+        <form id="addVehicleForm">
+          <label>เลขทะเบียน</label>
+          <input type="text" id="newPlate" name="plate" readonly required />
+
+          <label>จังหวัด</label>
+          <input
+            type="text"
+            id="newProvince"
+            name="province"
+            placeholder="เช่น กรุงเทพมหานคร"
+            required
+          />
+
+          <label>ประเภทรถ</label>
+          <select id="newVehicleType" name="vehicle_type" required>
+            <option value="">เลือกประเภทรถ</option>
+            <option value="รถยนต์">รถยนต์</option>
+            <option value="รถจักรยานยนต์">รถจักรยานยนต์</option>
+            <option value="รถกระบะ">รถกระบะ</option>
+            <option value="รถบรรทุก">รถบรรทุก</option>
+            <option value="อื่น ๆ">อื่น ๆ</option>
+          </select>
+
+          <label>ชื่อเจ้าของรถ</label>
+          <input
+            type="text"
+            id="newOwner"
+            name="owner"
+            placeholder="กรอกชื่อเจ้าของรถ"
+            required
+          />
+
+          <button type="submit" class="save-btn">บันทึกทะเบียน</button>
+        </form>
+      </div>
+    </div>
+    <main class="container">
+      <header>
+        <h1>LICENSE PLATE RECOGNITION</h1>
+        <p>ระบบตรวจจับและตรวจสอบป้ายทะเบียนรถยนต์ด้วย AI</p>
+      </header>
+
+      <section class="upload-card">
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="imageInput" accept="image/*" hidden />
+
+          <div id="uploadContent">
+            <div class="upload-icon">↑</div>
+            <h3>Upload Vehicle Image</h3>
+            <p>คลิกเพื่อเลือกรูปภาพ หรือลากรูปภาพมาวางที่นี่</p>
+            <span>รองรับ JPG, JPEG, PNG</span>
+            <button type="button" id="chooseBtn">เลือกรูปภาพ</button>
+          </div>
+
+          <img id="previewImage" alt="ภาพตัวอย่าง" />
+        </div>
+
+        <button id="analyzeBtn" disabled>ตรวจสอบป้ายทะเบียน</button>
+      </section>
+
+      <section id="resultSection" class="result-card hidden">
+        <h2>ผลการตรวจจับ</h2>
+
+        <div class="result-image">
+          <img id="resultImage" alt="ภาพรถยนต์ที่อัปโหลด" />
+        </div>
+
+        <div class="plate-result">
+          <span>เลขทะเบียนรถ</span>
+          <h2 id="plateNumber">-</h2>
+        </div>
+
+        <div id="statusBox" class="status-box">รอผลการตรวจสอบ</div>
+
+        <div id="actionArea">
+          <p id="actionMessage"></p>
+          <div class="action-buttons">
+            <button id="addVehicleBtn" class="add-btn hidden">
+              + เพิ่มทะเบียนนี้
+            </button>
+
+            <button id="openGateBtn" class="open-gate-btn">↑ OPEN GATE</button>
+
+            <button id="closeGateBtn" class="close-gate-btn">
+              ↓ CLOSE GATE
+            </button>
+          </div>
+
+          <p id="gateMessage" class="gate-message"></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

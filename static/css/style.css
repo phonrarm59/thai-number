@@ -1,0 +1,347 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+    padding: 50px 20px;
+}
+
+.container {
+    max-width: 750px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+header h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #94a3b8;
+    margin-top: 12px;
+}
+
+.upload-card,
+.result-card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #334155;
+    margin-bottom: 25px;
+}
+
+.upload-area {
+    border: 2px dashed #475569;
+    border-radius: 12px;
+    min-height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.upload-area:hover {
+    border-color: #38bdf8;
+    background: #263449;
+}
+
+.upload-icon {
+    font-size: 45px;
+    color: #38bdf8;
+}
+
+.upload-area h3 {
+    margin: 15px 0 8px;
+}
+
+.upload-area p,
+.upload-area span {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.upload-area span {
+    display: block;
+    margin-top: 10px;
+}
+
+button {
+    background: #0284c7;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#analyzeBtn {
+    width: 100%;
+}
+#resultSection > h2 {
+    text-align: center;
+    width: 100%;
+}
+
+#previewImage,
+#resultImage {
+    display: none;
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.result-card h2 {
+    margin-bottom: 20px;
+}
+
+.result-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.plate-result {
+    text-align: center;
+    background: #0f172a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.plate-result span {
+    color: #94a3b8;
+}
+
+.plate-result h2 {
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.status-box {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    background: #334155;
+}
+
+.hidden {
+    display: none;
+}
+#actionArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.add-btn {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none !important;
+}
+/* พื้นหลัง Popup */
+.modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* ซ่อน Popup */
+.hidden {
+    display: none !important;
+}
+
+/* กล่องฟอร์ม */
+.modal-content {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: popupShow 0.25s ease;
+}
+
+.modal-content h2 {
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.modal-content p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+/* ปุ่มปิด */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    border: none;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #777;
+}
+
+/* ช่องกรอกข้อมูล */
+.modal-content label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+/* ปุ่มบันทึก */
+.save-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Animation */
+@keyframes popupShow {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+#actionMessage {
+    margin-top: 25px;
+    line-height: 1.8;
+}
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.add-btn,
+.open-gate-btn {
+    width: 200px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.open-gate-btn {
+    background: #16834a;
+    color: white;
+}
+
+.open-gate-btn:hover {
+    background: #116638;
+}
+
+.gate-message {
+    text-align: center;
+    color: #16834a;
+    font-weight: bold;
+    margin-top: 12px;
+}
+.close-gate-btn {
+    width: 200px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #dc3545;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-gate-btn:hover {
+    background: #b02a37;
+}
+
+.close-gate-btn:disabled,
+.open-gate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
