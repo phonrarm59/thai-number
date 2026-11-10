@@ -67,15 +67,17 @@
           <input type="file" id="imageInput" accept="image/*" hidden />
 
           <div id="uploadContent">
-            <div class="upload-icon">↑</div>
-            <h3>Upload Vehicle Image</h3>
-            <p>คลิกเพื่อเลือกรูปภาพ หรือลากรูปภาพมาวางที่นี่</p>
-            <span>รองรับ JPG, JPEG, PNG</span>
-            <button type="button" id="chooseBtn">เลือกรูปภาพ</button>
-          </div>
+    <div class="upload-icon">↑</div>
+    <h3>Upload Vehicle Image</h3>
+    <p>คลิกเพื่อเลือกรูปภาพ หรือลากรูปภาพมาวางที่นี่</p>
+    <span>รองรับ JPG, JPEG, PNG</span>
+    <button type="button" id="chooseBtn">เลือกรูปภาพ</button>
+</div>
 
-          <img id="previewImage" alt="ภาพตัวอย่าง" />
-        </div>
+<div id="previewContainer" style="display: none;">
+    <p>ภาพที่เลือก</p>
+    <img id="previewImage" alt="ภาพทะเบียนรถที่เลือก">
+</div>
 
         <button id="analyzeBtn" disabled>ตรวจสอบป้ายทะเบียน</button>
       </section>

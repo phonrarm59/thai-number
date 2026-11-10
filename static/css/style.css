@@ -7,8 +7,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: #f8fafc;
+    background: #ffe1e6;
+    color: #202020;
     min-height: 100vh;
     padding: 50px 20px;
 }
@@ -24,26 +24,27 @@ header {
 }
 
 header h1 {
-    font-size: 28px;
+    font-size: 35px;
     letter-spacing: 2px;
 }
 
 header p {
-    color: #94a3b8;
+    color: #1d1d1d;
     margin-top: 12px;
+    font-size: 18px;
 }
 
 .upload-card,
 .result-card {
-    background: #1e293b;
+    background: #FD1843;
     padding: 25px;
     border-radius: 15px;
-    border: 1px solid #334155;
+    border: 5px solid #b80022;
     margin-bottom: 25px;
 }
 
 .upload-area {
-    border: 2px dashed #475569;
+    border: 5px dashed #b80022;
     border-radius: 12px;
     min-height: 280px;
     display: flex;
@@ -56,13 +57,13 @@ header p {
 }
 
 .upload-area:hover {
-    border-color: #38bdf8;
-    background: #263449;
+    border-color: #fd3e61;
+    background: #fd3e61;
 }
 
 .upload-icon {
     font-size: 45px;
-    color: #38bdf8;
+    color: #4b000e;
 }
 
 .upload-area h3 {
@@ -71,8 +72,8 @@ header p {
 
 .upload-area p,
 .upload-area span {
-    color: #94a3b8;
-    font-size: 14px;
+    color: #1d1d1d;
+    font-size: 16px;
 }
 
 .upload-area span {
@@ -81,7 +82,7 @@ header p {
 }
 
 button {
-    background: #0284c7;
+    background: #810018;
     color: white;
     border: none;
     padding: 12px 22px;
@@ -124,15 +125,20 @@ button:disabled {
 
 .plate-result {
     text-align: center;
-    background: #0f172a;
+    background: #810018;
     padding: 20px;
     border-radius: 10px;
 }
 
 .plate-result span {
-    color: #94a3b8;
+    color: #faf8f8;
 }
-
+#plateNumber {
+    color: #faf8f8;
+}
+#statusBox {
+    color: #faf8f8;
+}
 .plate-result h2 {
     font-size: 32px;
     margin-top: 10px;
@@ -144,7 +150,7 @@ button:disabled {
     padding: 15px;
     text-align: center;
     border-radius: 8px;
-    background: #334155;
+    background: #810018;
 }
 
 .hidden {
@@ -252,7 +258,7 @@ button:disabled {
 .modal-content input:focus,
 .modal-content select:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #FD1843;
 }
 
 /* ปุ่มบันทึก */
@@ -261,7 +267,7 @@ button:disabled {
     padding: 13px;
     border: none;
     border-radius: 8px;
-    background: #2563eb;
+    background: #FD1843;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -269,7 +275,7 @@ button:disabled {
 }
 
 .save-btn:hover {
-    background: #1d4ed8;
+    background: #FD1843;
 }
 
 /* Animation */
@@ -287,6 +293,8 @@ button:disabled {
 #actionMessage {
     margin-top: 25px;
     line-height: 1.8;
+    color: #070707;
+    font-weight: bold;
 }
 .action-buttons {
     display: flex;
@@ -319,7 +327,7 @@ button:disabled {
 
 .gate-message {
     text-align: center;
-    color: #16834a;
+    color: #080808;
     font-weight: bold;
     margin-top: 12px;
 }
@@ -328,7 +336,7 @@ button:disabled {
     padding: 13px;
     border: none;
     border-radius: 10px;
-    background: #dc3545;
+    background: #7c000c;
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -337,11 +345,73 @@ button:disabled {
 }
 
 .close-gate-btn:hover {
-    background: #b02a37;
+    background: #4d0008;
 }
 
 .close-gate-btn:disabled,
 .open-gate-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}.preview-container {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.preview-container img {
+    display: block;
+    max-width: 100%;
+    width: 450px;
+    max-height: 300px;
+    object-fit: contain;
+    margin: 10px auto;
+}
+
+.hidden {
+    display: none !important;
+}
+#previewContainer {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#previewImage {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    max-height: 300px;
+    object-fit: contain;
+    margin: 15px auto;
+}
+#uploadArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#uploadContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#previewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#previewImage {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    max-height: 300px;
+    object-fit: contain;
 }

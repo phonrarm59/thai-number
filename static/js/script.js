@@ -13,7 +13,7 @@ const resultImage = document.getElementById("resultImage");
 const plateNumber = document.getElementById("plateNumber");
 const statusBox = document.getElementById("statusBox");
 const actionArea = document.getElementById("actionArea");
-
+const previewContainer = document.getElementById("previewContainer");
 const resultSection = document.getElementById("resultSection");
 
 const addVehicleBtn = document.getElementById("addVehicleBtn");
@@ -26,19 +26,12 @@ const actionMessage = document.getElementById("actionMessage");
 
 let selectedFile = null;
 
-
-// ======================================
-// 3. เลือกรูปภาพ
-// ======================================
-
-chooseBtn.addEventListener("click", () => {
-    imageInput.click();
-});
-
-
 // ======================================
 // 4. แสดงตัวอย่างรูปภาพ
 // ======================================
+
+
+
 
 imageInput.addEventListener("change", () => {
 
@@ -46,28 +39,43 @@ imageInput.addEventListener("change", () => {
 
     if (!file) return;
 
+    if (!file.type.startsWith("image/")) {
+        alert("กรุณาเลือกไฟล์รูปภาพ");
+        return;
+    }
+
     selectedFile = file;
 
     const reader = new FileReader();
 
-    reader.onload = function (event) {
+    reader.onload = (event) => {
+
+        previewImage.onload = () => {
+            console.log("แสดงภาพสำเร็จ");
+        };
+
+        previewImage.onerror = () => {
+            console.error("ไม่สามารถแสดงภาพได้");
+        };
 
         previewImage.src = event.target.result;
 
-        previewImage.classList.remove("hidden");
-
+        previewContainer.style.display = "block";
+        previewImage.style.display = "block";
     };
 
     reader.readAsDataURL(file);
 
     analyzeBtn.disabled = false;
-
-    // ซ่อนผลลัพธ์เดิมเมื่อเลือกรูปใหม่
     resultSection.classList.add("hidden");
-
     addVehicleBtn.classList.add("hidden");
 
 });
+
+chooseBtn.addEventListener("click", () => {
+    imageInput.click();
+});
+
 
 
 // ======================================
