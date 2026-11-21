@@ -156,7 +156,8 @@ def recognize():
             headers=headers,
             data=payload,
             files=files,
-            timeout=60
+            # (เวลารอเชื่อมต่อ, เวลารอคำตอบ) ตั้งให้สั้นกว่าเวลาจำกัดของ Vercel
+            timeout=(10, 25)
         )
 
         # แสดงข้อมูลตอบกลับจาก AI ใน Terminal
@@ -235,6 +236,34 @@ def recognize():
             "registered": vehicle is not None,
             "vehicle": vehicle
         })
+
+    # กรณี AI FOR THAI ไม่ตอบกลับภายในเวลาที่กำหนด
+    except requests.exceptions.Timeout as error:
+
+        print("AI API Timeout:", error)
+
+        return jsonify({
+            "success": False,
+            "error": "AI FOR THAI ไม่ตอบกลับ (เซิร์ฟเวอร์อาจขัดข้องชั่วคราว) กรุณาลองใหม่ภายหลัง"
+        }), 504
+
+    # กรณี AI FOR THAI ตอบกลับเป็น error (เช่น API Key ผิด หรือโควตาหมด)
+    except requests.exceptions.HTTPError as error:
+
+        status_code = error.response.status_code if error.response is not None else "?"
+        print("AI API HTTP Error:", status_code, error.response.text[:500] if error.response is not None else "")
+
+        if status_code in (401, 403):
+            message = "API Key ของ AI FOR THAI ไม่ถูกต้องหรือหมดอายุ"
+        elif status_code == 429:
+            message = "เรียกใช้ AI FOR THAI เกินโควตา กรุณารอสักครู่แล้วลองใหม่"
+        else:
+            message = f"AI FOR THAI ตอบกลับผิดพลาด (HTTP {status_code}) กรุณาลองใหม่"
+
+        return jsonify({
+            "success": False,
+            "error": message
+        }), 502
 
     # กรณีเชื่อมต่อ API ไม่สำเร็จ
     except requests.exceptions.RequestException as error:
