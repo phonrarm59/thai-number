@@ -109,6 +109,10 @@ analyzeBtn.addEventListener("click", async () => {
 
     actionMessage.textContent = "";
 
+    // เริ่มตรวจรถคันใหม่ ให้ไม้กั้นกลับมาปิด
+    gateMessage.textContent = "";
+    setGateVisual(false);
+
     const formData = new FormData();
 
     formData.append("image", selectedFile);
@@ -415,10 +419,23 @@ const openGateBtn = document.getElementById("openGateBtn");
 const closeGateBtn = document.getElementById("closeGateBtn");
 const gateMessage = document.getElementById("gateMessage");
 
+// อัปเดตภาพไม้กั้น (true = เปิด, false = ปิด)
+function setGateVisual(isOpen) {
+
+    const gateVisual = document.getElementById("gateVisual");
+    const gateLabel = document.getElementById("gateLabel");
+
+    if (!gateVisual) return;
+
+    gateVisual.classList.toggle("open", isOpen);
+    gateLabel.textContent = isOpen ? "ไม้กั้นเปิดแล้ว" : "ไม้กั้นปิดอยู่";
+}
+
 // จำลองเปิดไม้กั้น
 function openGate() {
 
     gateMessage.textContent = "กำลังเปิดไม้กั้น...";
+    setGateVisual(true);
 
     openGateBtn.disabled = true;
     closeGateBtn.disabled = true;
@@ -434,6 +451,7 @@ function openGate() {
 function closeGate() {
 
     gateMessage.textContent = "กำลังปิดไม้กั้น...";
+    setGateVisual(false);
 
     openGateBtn.disabled = true;
     closeGateBtn.disabled = true;

@@ -98,6 +98,35 @@
 
         <div id="actionArea">
           <p id="actionMessage"></p>
+
+          <!-- ภาพไม้กั้น: เพิ่ม class "open" ที่ #gateVisual เพื่อยกไม้กั้นขึ้น -->
+          <div id="gateVisual" class="gate-visual">
+            <svg viewBox="-10 -135 330 285" role="img" aria-labelledby="gateLabel">
+              <!-- ถนน -->
+              <rect x="-10" y="128" width="330" height="22" fill="#3a3a3a" />
+              <line x1="-10" y1="139" x2="320" y2="139" stroke="#f5d000"
+                    stroke-width="3" stroke-dasharray="18 12" />
+
+              <!-- เสาไม้กั้น -->
+              <rect x="44" y="58" width="52" height="72" rx="8" fill="#2b2b2b" />
+              <rect x="52" y="96" width="36" height="22" rx="4" fill="#1a1a1a" />
+              <circle class="gate-light" cx="70" cy="107" r="7" />
+
+              <!-- ไม้กั้น (หมุนรอบจุด 70,70) -->
+              <g class="gate-arm">
+                <rect x="66" y="63" width="200" height="14" rx="7"
+                      fill="#ffffff" stroke="#b80022" stroke-width="2" />
+                <rect x="94" y="64" width="22" height="12" fill="#e0122f" />
+                <rect x="134" y="64" width="22" height="12" fill="#e0122f" />
+                <rect x="174" y="64" width="22" height="12" fill="#e0122f" />
+                <rect x="214" y="64" width="22" height="12" fill="#e0122f" />
+                <rect x="250" y="64" width="14" height="12" rx="4" fill="#e0122f" />
+              </g>
+              <circle cx="70" cy="70" r="11" fill="#555" stroke="#1a1a1a" stroke-width="3" />
+            </svg>
+            <p id="gateLabel" class="gate-label">ไม้กั้นปิดอยู่</p>
+          </div>
+
           <div class="action-buttons">
             <button id="addVehicleBtn" class="add-btn hidden">
               + เพิ่มทะเบียนนี้

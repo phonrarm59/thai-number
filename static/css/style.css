@@ -415,3 +415,46 @@ button:disabled {
     max-height: 300px;
     object-fit: contain;
 }
+
+/* ภาพไม้กั้น */
+.gate-visual {
+    width: 100%;
+    margin-top: 20px;
+    padding: 18px 18px 12px;
+    border-radius: 12px;
+    background: #810018;
+    text-align: center;
+}
+
+.gate-visual svg {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.gate-arm {
+    transform-box: view-box;
+    transform-origin: 70px 70px;
+    transform: rotate(0deg);
+    transition: transform 1s ease-in-out;
+}
+
+.gate-visual.open .gate-arm {
+    transform: rotate(-80deg);
+}
+
+.gate-light {
+    fill: #ff2e2e;
+    transition: fill 0.3s;
+}
+
+.gate-visual.open .gate-light {
+    fill: #2ee66b;
+}
+
+.gate-label {
+    margin-top: 10px;
+    color: #ffffff;
+    font-weight: bold;
+}
